@@ -374,6 +374,20 @@ function task1() {
           resultElement.textContent = 'Произошла ошибка';
       }
 }
+
+//файл app.js
+app.get('/api', async (req, res) => {
+  try {      
+      const response = await axios.get("https://uselessfacts.jsph.pl/api/v2/facts/random");
+      const interestingFact = response.data;
+      res.json({
+          text: interestingFact.text
+      });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Внутренняя ошибка сервера.' });
+  }
+});
 </pre>
 <h2 align="center">Вывод</h2>
 <p align="justify">Таким образом, я закрепил навык работы с Node.js, научился работать с API (сделал вывод интересных фактов через кнопку), поработал с библиотекой axios, все поставленные цели были выполнены. </p>
