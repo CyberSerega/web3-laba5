@@ -1,6 +1,6 @@
 <h1 align="center" paddin> МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ «САХАЛИНСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ»</h1>
 
-<p align="center">Лабораторная работа №4 "Основы языка JavaScript" </p>
+<p align="center">Лабораторная работа №5 "Основы языка JavaScript" </p>
 
 <p align="right">Выполнил: Рогаль Сергей Александрович</p>
 <p align="right">Проверил: Соболев Е. И.</p>
@@ -17,335 +17,365 @@
 
 <h2>Решение задач</h2>
 <pre>
+// Задача 1
 function task1() {
-    let x = Number(prompt('Введите x: '));
-    let res = x>0 ? Math.sin(x)*Math.sin(x) : 1-2*Math.sin(x*x);
-    alert(res);
+    user = {};
+    user.name = "John";
+    user.surname = "Smith";
+    user.name = "Pete";
+    delete user.name;
+    alert("Все действия выполнены");
   }
-  ``` 
+  
   // Задача 2
   function task2() {
-    let n = prompt("Введите значение n: ", "0880");
-    const numStr = n.toString();
-    if (numStr.length !== 4) {
-        alert("Число n<=9999")
+    function isEmpty(obj) {
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          return false;
+        }
+      }
+      return true;
     }
-    if (numStr === numStr.split('').reverse().join('')) {
-        alert("Число палидром")
-    }
-    else {
-        alert("Число не палидром")
-    }
+    let schedule = {};
+    alert( isEmpty(schedule) ); // true
+    schedule["8:30"] = "get up";
+    alert( isEmpty(schedule) ); // false
   }
   
   // Задача 3
   function task3() {
-    let n = Number(prompt('Введите год: '));
-    let res = n<100 ? n%4 : n%400;
-    if (res==0) alert("Это год високосный");
-    else alert("Это год невисокосный");
+    const user = {
+      name: "John"
+    };
+    user.name = "Pete";
+    alert("Это будет работать");
   }
   
   // Задача 4
   function task4() {
-    let x = Number(prompt('Введите x: '));
-    let res = x<-1 ? -1 : (x==-1 ? 1 : x);
-    alert('Результат ' + res);
+    let salaries = {
+    John: 100,
+    Ann: 160,
+    Pete: 130
+  }
+  res = 0
+  for(let key in salaries){
+    res+=salaries[key];
+  }
+  alert(`Итоговая сумма равна ${res}`);
   }
   
   // Задача 5
   function task5() {
-    let n = Number(prompt('Введите номер месяца: '));
-    if (n<=2 | n==12) alert("Зима");
-    else if (n<6) alert("Весна");
-    else if (n<10) alert("Лето");
-    else alert("Осень");
+    function multiplyNumeric(obj){
+      for(let key in obj){
+        if (typeof obj[key] === "number") obj[key]*=2;
+      }
+    }
+    let menu = {
+      width: 200,
+      height: 300,
+      title: "My menu"
+    };  
+    alert(`До: menu{\nwidth: ${menu.width}\nheight: ${menu.height}\n
+  title: ${menu.title}\n}`) ; 
+    multiplyNumeric(menu);
+    alert(`После: menu{\nwidth: ${menu.width}\nheight: ${menu.height}\n
+  title: ${menu.title}\n}`); 
+    
   }
   
   // Задача 6
   function task6() {
-    let m = Number(prompt('Введите номер масти'));
-    let n = Number(prompt('Введите номер достоинства'));
-    let res = "";
-    switch(n){
-      case 6: res+="Шестерка";
-      break;
-      case 7: res+="Семерка";
-      break;
-      case 8: res+="Восьмерка";
-      break;
-      case 9: res+="Девятка";
-      break;
-      case 10: res+="Десятка";
-      break;
-      case 11: res+="Валет";
-      break;
-      case 12: res+="Дама";
-      break;
-      case 13: res+="Король";
-      break;
-      case 14: res+="Туз";
-      break;
-    }
-    res+=" ";
-    switch(m){
-      case 1: res+="пик";
-      break;
-      case 2: res+="треф";
-      break;
-      case 3: res+="бубен";
-      break;
-      case 4: res+="черви";
-      break;
-    }
-    alert(res);
-  }
+    let fruits = ["Яблоки", "Груша", "Апельсин"];
+// добавляем новое значение в "копию"
+    let shoppingCart = fruits;
+    shoppingCart.push("Банан");
+// что в fruits?
+    alert( fruits.length ); // ?
+
+}
 
   
-  // Задача 7 ?????
+  // Задача 7
   function task7() {
-  let n = prompt("Введите значение n: ", "1984")
-  const animals = ["Крыса", "Корова", "Тигр", "Заяц", "Дракон", "Змея", "Лошадь", "Овца", "Обезьяна", "Петух", "Собака", "Свинья"];
-  const colors = ["Зеленый", "Красный", "Желтый", "Белый", "Черный"];
-
-  const startYear = 1984; // Год, с которого начинается цикл
-  const animalIndex = (n - startYear) % 12;
-  const colorIndex = Math.floor((n - startYear) / 2) % 5;
-
-  const animalName = animals[animalIndex];
-  const colorName = colors[colorIndex];
-
-  alert(animalName + " " + colorName);
+    const styles = ["Джаз", "Блюз"];
+    alert(styles);
+    styles.push("Рок-н-ролл");
+    alert(styles);
+    styles[Math.floor(styles.length / 2)] = "Классика";
+    alert(styles);
+    let firstElement = styles.shift(); 
+    alert(firstElement);
+    alert(styles);
+    styles.unshift(["Рэп","Регги"]);
+    alert(styles);
   }
   
   // Задача 8
   function task8() {
-    let res = "";
-    for(let i=1; i<=10; i++){
-      res+=`9*${i}=${9*i}\n`;
-    }
-    alert(res);
+    let arr = ["a", "b"];
+    arr.push(function() {
+      alert( this );
+    });
+    arr[2]();
   }
   
   // Задача 9
   function task9() {
-    let res = "";
-    for(let i=2; i<=20; i++){
-      res+=`sin(${i})=${Math.sin(i)}\n`;
+    const stack = [];
+    do{
+      let num = prompt("Введите число(не число, чтобы закончить)");
+      if(isNaN(num)||num =='') break;
+      stack.push(Number(num));
+    }while(true)
+    let res = 0;
+    for(let i=0; i<stack.length; i++){
+      res+=stack[i];
     }
     alert(res);
   }
   
-  // Задача 10 ????
+  // Задача 10
   function task10() {
+    function getMaxSubSum(arr){
+      let maxSum = 0;
+      let partialSum = 0;
+      for(let i=0; i<arr.length; i++){
+        partialSum+=arr[i];
+        maxSum = Math.max(maxSum, partialSum);
+        if(partialSum<0) partialSum = 0;         
+      }
+      return maxSum;
+    }
+    alert(getMaxSubSum([-1, 2, 3, -9]));
+    alert(getMaxSubSum([2, -1, 2, 3, -9]));
+    alert(getMaxSubSum([-1, 2, 3, -9, 11]));
+    alert(getMaxSubSum([-2, -1, 1, 2]));
+    alert(getMaxSubSum([100, -9, 2, -3, 5]));
+    alert(getMaxSubSum([1, 2, 3]));
     
-    let result = "";
-    let a = parseInt(prompt("Введите число а: ", "100"));
-    let b = parseInt(prompt("Введите число b: ", "500"));
-    let sum = 0;
-    for (let i = 100; i <= 500; i++) {
-        sum += i;
-    }
-    result += "а)" + sum + "\n";
-    sum = 0
-
-    for (let i = a; i <= 500; i++) {
-        sum += i;
-    }
-    result += "б)" + sum + "\n";
-    sum = 0
-
-    for (let i = -10; i <= b; i++) {
-        sum += i;
-    }
-    result += "в)" + sum + "\n";
-    sum = 0
-
-    for (let i = a; i <= b; i++) {
-        sum += i;
-    }
-    result += "г)" + sum + "\n";
-    alert(result);
   }
   
   // Задача 11
   function task11() {
-    let res = 1;
-    let n = prompt('Введите n: ');
-    for(let i=2; i<=n; i++){
-      res+= 1/n;
+    function removeDuplicates(arr) {
+      let counts = {};
+    
+      for (let i = 0; i < arr.length; i++) {
+        counts[arr[i]] = (counts[arr[i]] || 0) + 1;
+    
+        if (counts[arr[i]] > 2) {
+          arr.splice(i, 1);
+          i--; // уменьшаем индекс, чтобы не пропустить следующий элемент после удаления
+        }
+      }
+      alert(arr);
     }
-    alert("Сумма равна: " + res);
-
+    alert("Массив без дубликатов: " + removeDuplicates([1, 2, 2, 3, 3, 3, 4, 4, 4, 4]).toString());
 }
   // Задача 12
   function task12() {
-    let x = Number(prompt('Введите x: '));
-    let y = Number(prompt('Введите y: '));
-    let res1 = x;
-    let res2 = y;
-    for (let i = 0; i < y-1; i++) res1+=x;
-    for (let i = 0; i < x-1; ++i) res2+=y;
-    alert("Результат1: " + res1);
-    alert("Результат2: " + res2);
+    const arr = [1,7,15,8,9,11];
+    let maxInd = -1;
+    let maxElem = -1;
+    for(let i = 0; i<arr.length; i+=2){
+      if(arr[i]>maxElem){
+        maxElem = arr[i];
+        maxInd = i;
+      }
+    }
+    for(let j = 0; j<3; j++){
+      for(let i = maxInd; i<arr.length-1; i++){
+        let temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+      }
+    }
+    for (let i = maxInd; i > 0; i--) {
+      let temp = arr[i];
+      arr[i] = arr[i - 1];
+      arr[i - 1] = temp;
+    }
+    alert("Массив после сдвигов: " + arr);
   }
   
   // Задача 13
   function task13() {
-    let n = prompt('Введите n: ');
-    let res = 0;
-    for (let i = 1; i < 2*n; i++){
-      if (i%2==1) res+=i;
-    };
-    alert("Его квадрат: "+ res);
+    const arr = [-1, 0, 2, 5, -5, 3, -4];
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] < 0) {
+        sum += arr[i];
+      }
+    }
+    alert("Сумма отрицательных чисел массива: " + sum);
   }
   
   // Задача 14
   function task14() {
-    let n = 0;
-    for (let i = 50; i >= 1; i--)
-    {
-        n= Math.sqrt(i + n);
+    let res = 1;
+    const arr = [-1, 0, 5, -2, 6, 3, -2]
+    for(let i = 0; i<arr.length; i+=2){
+      res*=arr[i];
     }
-    alert(n);
+    alert("Произведение нечетных элементов массива: " + res);
   }
   
   // Задача 15
   function task15() {
-    let seq = [1, 3, 5 ,6 ,8, 0];
+    const arr = [-1, 0, 5, -2, 6, 0, -2]; 
     let sum=0;
-    for(let i=0; i<seq.length; i++) sum+=seq[i];
-    alert("Сумма всех чисел последовательности " + sum);
-    alert("Количество чисел в последовательности " + (seq.length-1).toString());
+    let count = 0;
+    let i = 0;
+    while(i<arr.length && count<=2){
+      if(arr[i]==0) {
+        count++;
+      }
+      if(count==0) continue;
+      sum+=arr[i];
+      i++;
+    }
+    if (count==0) alert('0');
+    else alert(sum);
   }
   
   // Задача 16
   function task16() {
-    let seq = [1, 3, 5 ,6 ,8, -1];
-    let sum=0;
-    for(let i=0; i<seq.length-1; i++) sum+=seq[i];
-    sum /= seq.length-1;
-    alert("Среднее арифметическое " + sum);
+    const arr = [-1, 0, 5, -2, 6, 0, -2];
+    max = arr[0];
+    for(let i = 1; i<arr.length; i++){
+      if(arr[i]>max) max = arr[i];
+    }
+    alert("Максимальный элемент: "+ max.toString());
   }
   
   // Задача 17
   function task17() {
-    let n = prompt('Введите число n');
-    let count3 = 0, countLast = 0, countEven = 0,
-    sum5 = 0, mult7 = 1, count05 = 0;
-
-    for(let i = 0; i < n.length; i++){
-      if (n[i] == '3') count3++;
-      if (n[i] == n[n.length - 1]) countLast++;
-      if (Number(n[i]) % 2 == 0) countEven++;
-      if (Number(n[i]) > 5) sum5+= Number(n[i]);
-      if (Number(n[i]) > 7) mult7*= Number(n[i]);
-      if (n[i] == '0' || n[i] == '5') count05++;
+    const arr = [-1, 0, 5, -2, 6, 0, -2];
+    if(arr.length==1) alert(arr[0]);
+    else{
+      let max = arr[1];
+      for(let i = 3; i<arr.length; i+=2){
+        if(arr[i]>max) max = arr[i];
+      }
+      alert("Максимальный четный элемент: "+ max.toString());
+    }
   }
-    alert(`а) ${count3}
-     б) ${countLast}
-     в) ${countEven}
-     г) ${sum5}
-     д) ${mult7}
-     е) ${count05}`);
-}
   
-  // Задача 18
   function task18() {
-    let n = prompt('Введите число n');
-    let maxDigit = 0, maxIndex=0, minDigit=0, minIndex=0;
-    for(let i = 0; i < n.length; i++){
-      if(Number(n[i])>maxDigit){
-        maxDigit = Number(n[i]);
-        maxIndex = i;
-       }
-       if(Number(n[i]<minDigit)){
-         minDigit = Number(n[i]);
-         minIndex = i;
-       }
-  } 
-   for(let i = n.length-1; i >=0; i--){
-     if(Number(n[i])>maxDigit){
-       maxDigit = Number(n[i]);
-       maxIndex = i;
-     }
-     if(Number(n[i]<minDigit)){
-       minDigit = Number(n[i]);
-       minIndex = i;
-     }
- } 
-alert(`maxIndex = ${maxIndex+1}, minIndex = ${minIndex+1}`);
-}
+    const numbers = [0, 2, 3, 5, 0, 3, 0, 8, 6, 7, 0];
+    res = [];
+    alert("Исходный массив: "+ numbers.toString());
+    for(let i = 0; i< numbers.length; i++){
+      if (numbers[i]==0) res.push(0);
+    }
+    for(let i = 0; i< numbers.length; i++){
+      if (!numbers[i]==0) res.push(numbers[i]);
+    }
+    alert("Итоговый массив: "+ res.toString());
+  }
   
   // Задача 19
   function task19() {
-    let n = Number(prompt('Введите число n'));
-    let i=2;
-    while(i*i<=n){
-        if(n%i!=0){
-          alert('Число не простое');
-          return;
-        };
-        i++;
+    const numbers = [1, 2, 3, 8, 7, 6];
+    var min = numbers[0];
+    var minInd = 0;
+    var maxInd = 0;
+    var max = numbers[0];
+    for(let i = 1; i< numbers.length; i++){
+      if (numbers[i]>max) {
+        max = numbers[i];
+        maxInd = i;
+      }      
     }
-    alert('Число простое');
+    for(let i = 1; i< numbers.length; i++){      
+      if (numbers[i]<min){
+        min = numbers[i];
+        minInd = i;
+      }
+    }
+    let res = minInd+maxInd;
+    alert(`Сумма номеров минимального и максимального элементов: ${res}`);
   }
   
   // Задача 20
   function task20() {
-    let n = prompt('Введите число n');
-    for(let i=0; i<n.length-1; i++){
-      if(Number(n[i])>Number(n[i+1])){
-        alert('No');
-        return;
-      } 
-    }
-    alert('Yes');
+    const numbers = [5, -2, 2, 3, 8, 7, 6, -1];
+    var min = numbers[0];
+    for(let i = 1; i< numbers.length; i++){
+      if (Math.abs(numbers[i])<Math.abs(min)) {
+        min = numbers[i];
+      }
+  }
+  alert(`Минимальный по модулю элемент массива: ${min}`);
   }
   
   // Задача 21
   function task21() {
-    const seq = [1, 2 ,3, 4 , 1001, 1004, 1005, 2004, 4005, 7000, 10000]
-    let n = Number(prompt('Введите число n'));
-    for(let i=0; i<seq.length-1; i++){
-      if(n<seq[i]){
-        alert('Порядковый номер: ' + (i+1));
-        return;
-      } 
+    var arr= [];
+    for(let i = 0; i< 10; i++){
+      arr.push(Math.floor(Math.random() * (10 + 10 + 1) - 10));
     }
-    alert("Такого числа нет");
+    alert("Исходный массив: "+ arr.toString());
+    var arr1= arr.slice(0, arr.length/2);
+    arr1.reverse();
+    var arr2= arr.slice(arr.length/2, arr.length);
+    arr2.reverse();
+    arr = [];
+    for(let i = 0; i< arr1.length; i++){
+      arr.push(arr1[i]);
+    }
+    for(let i = 0; i< arr2.length; i++){
+      arr.push(arr2[i]);
+    }
+    alert("Итоговый массив: "+ arr.toString());
   }
   
   // Задача 22
   function task22() {
-    let n = prompt('Введите число n');
-    let a = prompt('Введите число a');
-    let b = prompt('Введите число b');
-    let countA = 0, countB=0;
-    for(let i=0; i<n.length-1; i++){
-      if(n[i]==a) countA++;
-      if(n[i]==b) countB++;
+    const arr= [];
+    for(let i = 0; i< 12; i++){
+      arr.push(Math.floor(Math.random() * (12 + 12 + 1) - 12));
     }
-    if(countA<countB) alert(`Да, цифра ${a} встречается реже, чем ${b}`);
-    else alert(`Нет, цифра ${a} не встречается реже, чем ${b}`);
+    alert("Исходный массив: "+ arr.toString());
+    for (let i = 0; i < 4 ; i++) {
+      let lastEl = arr[arr.length-1];
+      for (let j = arr.length-1; j > 0; j--){
+        arr[j]= arr[j-1];
+      }
+      arr[0] = lastEl;
+    }
+    alert("Итоговый массив: "+ arr.toString());
   }
 
-  function task23() {
-    let i=10;
-    let res = "";
-    while(i<=30){
-      res+=i.toString()+"\n";
-      i++;
-    } 
-    i=9;
-    // do{
-    //   i++;
-    //   res+=i.toString()+"\n";
-    // }while(i<30)
-    alert(res);
-  }
+  async function getGoroscope(){
+      const name = document.getElementById("gorName").value;
+      const resultElement = document.getElementById('goroscope');
+      try {
+          // Отправка запроса на сервер для предсказания возраста, пола
+          const response = await fetch(`/predict-info?name=${name}`);
+          const result = await response.json();
+          // Отображение результата
+          resultElement.textContent = `
+              Предсказанная информация для ${name}:
+              Возраст: ${result.age}
+              Пол: ${result.gender} (${(result.probability * 100).toFixed(2)}%)                
+          `;
+          resultElement.innerHTML = `
+          Предсказание на сегодня для ${name}USA:
+          ${result.body}
+          `;
+          document.body.appendChild(resultElement);
+      } catch (error) {
+          // Обработка ошибок
+          console.error(error);
+          resultElement.textContent = 'Произошла ошибка';
+      }
+}
 </pre>
 <h2 align="center">Вывод</h2>
-<p align="justify">Таким образом, я закрепил навык работы с Node.js, лучше стал ориентироваться в нём, кроме того, поработал с библиотекой Express, все поставленные цели были выполнены. </p>
+<p align="justify">Таким образом, я закрепил навык работы с Node.js, научился работать с API (сделал вывод интересных фактов через кнопку), поработал с библиотекой axios, все поставленные цели были выполнены. </p>
 
 
