@@ -350,22 +350,15 @@ function task1() {
     alert("Итоговый массив: "+ arr.toString());
   }
 
-  async function getGoroscope(){
-      const name = document.getElementById("gorName").value;
-      const resultElement = document.getElementById('goroscope');
+ async function useApi(){
+      const resultElement = document.getElementById('fact');
       try {
-          // Отправка запроса на сервер для предсказания возраста, пола
-          const response = await fetch(`/predict-info?name=${name}`);
-          const result = await response.json();
+          const response = await fetch(`/api`);
+          const result = await response.json();          
           // Отображение результата
-          resultElement.textContent = `
-              Предсказанная информация для ${name}:
-              Возраст: ${result.age}
-              Пол: ${result.gender} (${(result.probability * 100).toFixed(2)}%)                
-          `;
           resultElement.innerHTML = `
-          Предсказание на сегодня для ${name}USA:
-          ${result.body}
+          Интересный факт для тебя:
+          ${result.text}
           `;
           document.body.appendChild(resultElement);
       } catch (error) {
